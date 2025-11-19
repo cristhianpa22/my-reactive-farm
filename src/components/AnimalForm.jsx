@@ -82,7 +82,7 @@ export default function AnimalForm({
       };
 
       const result = await onSubmit?.(payload);
-      setFormMessage("Animal created successfully 🐄");
+       setFormMessage("Animal created successfully 🐄");
       // Opcional: limpiar el formulario
       setValues(initialValues);
       onSuccess?.(result ?? payload);
@@ -110,22 +110,22 @@ export default function AnimalForm({
           htmlFor="field-name"
           className="text-sm font-medium text-gray-700 dark:text-gray-200"
         >
-          Name <span className="text-red-600">*</span>
+          Name <span className="text-red-600">*  Required</span>
         </label>
         <input
           id="field-name"
           name="name"
           type="text"
           required
+          autoFocus
           value={values.name}
           onChange={handleChange}
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? "error-name" : undefined}
-          className={`w-full rounded-md border px-3 py-2 text-sm outline-none transition placeholder:text-gray-400 dark:bg-neutral-800 dark:text-gray-100 ${
-            errors.name
-              ? "border-red-400 focus:ring-2 focus:ring-red-500"
-              : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
-          }`}
+          className={`w-full rounded-md border px-3 py-2 text-sm outline-none transition placeholder:text-gray-400 dark:bg-neutral-800 dark:text-gray-100 ${errors.name
+            ? "border-red-400 focus:ring-2 focus:ring-red-500"
+            : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
+            }`}
           placeholder="Lola"
         />
         {errors.name && (
@@ -145,7 +145,7 @@ export default function AnimalForm({
           htmlFor="field-type"
           className="text-sm font-medium text-gray-700 dark:text-gray-200"
         >
-          Type <span className="text-red-600">*</span>
+          Type <span className="text-red-600">* Required</span>
         </label>
         <select
           id="field-type"
@@ -155,11 +155,10 @@ export default function AnimalForm({
           onChange={handleChange}
           aria-invalid={Boolean(errors.type)}
           aria-describedby={errors.type ? "error-type" : undefined}
-          className={`w-full rounded-md border px-3 py-2 text-sm outline-none dark:bg-neutral-800 dark:text-gray-100 ${
-            errors.type
-              ? "border-red-400 focus:ring-2 focus:ring-red-500"
-              : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
-          }`}
+          className={`w-full rounded-md border px-3 py-2 text-sm outline-none dark:bg-neutral-800 dark:text-gray-100 ${errors.type
+            ? "border-red-400 focus:ring-2 focus:ring-red-500"
+            : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
+            }`}
         >
           <option value="" disabled>
             Select type…
@@ -187,7 +186,7 @@ export default function AnimalForm({
           htmlFor="field-age"
           className="text-sm font-medium text-gray-700 dark:text-gray-200"
         >
-          Age (years) <span className="text-red-600">*</span>
+          Age (years) <span className="text-red-600">*  Required</span>
         </label>
         <input
           id="field-age"
@@ -200,11 +199,10 @@ export default function AnimalForm({
           onChange={handleChange}
           aria-invalid={Boolean(errors.age)}
           aria-describedby={errors.age ? "error-age" : undefined}
-          className={`w-full rounded-md border px-3 py-2 text-sm outline-none dark:bg-neutral-800 dark:text-gray-100 ${
-            errors.age
-              ? "border-red-400 focus:ring-2 focus:ring-red-500"
-              : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
-          }`}
+          className={`w-full rounded-md border px-3 py-2 text-sm outline-none dark:bg-neutral-800 dark:text-gray-100 ${errors.age
+            ? "border-red-400 focus:ring-2 focus:ring-red-500"
+            : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
+            }`}
           placeholder="3"
         />
         {errors.age && (
@@ -224,7 +222,7 @@ export default function AnimalForm({
           htmlFor="field-weight"
           className="text-sm font-medium text-gray-700 dark:text-gray-200"
         >
-          Weight (kg) <span className="text-red-600">*</span>
+          Weight (kg) <span className="text-red-600">*  Required</span>
         </label>
         <input
           id="field-weight"
@@ -237,11 +235,10 @@ export default function AnimalForm({
           onChange={handleChange}
           aria-invalid={Boolean(errors.weight)}
           aria-describedby={errors.weight ? "error-weight" : undefined}
-          className={`w-full rounded-md border px-3 py-2 text-sm outline-none dark:bg-neutral-800 dark:text-gray-100 ${
-            errors.weight
-              ? "border-red-400 focus:ring-2 focus:ring-red-500"
-              : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
-          }`}
+          className={`w-full rounded-md border px-3 py-2 text-sm outline-none dark:bg-neutral-800 dark:text-gray-100 ${errors.weight
+            ? "border-red-400 focus:ring-2 focus:ring-red-500"
+            : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
+            }`}
           placeholder="250"
         />
         {errors.weight && (
@@ -261,7 +258,7 @@ export default function AnimalForm({
           htmlFor="field-status"
           className="text-sm font-medium text-gray-700 dark:text-gray-200"
         >
-          Status <span className="text-red-600">*</span>
+          Status <span className="text-red-600">*  Required</span>
         </label>
         <select
           id="field-status"
@@ -271,11 +268,10 @@ export default function AnimalForm({
           onChange={handleChange}
           aria-invalid={Boolean(errors.status)}
           aria-describedby={errors.status ? "error-status" : undefined}
-          className={`w-full rounded-md border px-3 py-2 text-sm outline-none dark:bg-neutral-800 dark:text-gray-100 ${
-            errors.status
-              ? "border-red-400 focus:ring-2 focus:ring-red-500"
-              : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
-          }`}
+          className={`w-full rounded-md border px-3 py-2 text-sm outline-none dark:bg-neutral-800 dark:text-gray-100 ${errors.status
+            ? "border-red-400 focus:ring-2 focus:ring-red-500"
+            : "border-gray-300 focus:ring-2 focus:ring-green-600 dark:border-neutral-700"
+            }`}
         >
           <option value="" disabled>
             Select status…
