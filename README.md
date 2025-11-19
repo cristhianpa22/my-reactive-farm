@@ -119,6 +119,65 @@ Que solo es un componente estético que solo recibe datos y los pinta en la pág
 
 -La utilización de useEffect para la carga inicial de datos de la API.
 
+## 3. Actividades prácticas
+
+## Actividad 1: Modificar y explicar un estado
+
+El estado que modifiqué fue que filtra el tipo de animal.
+
+```bash
+const [typeFilter, setTypeFilter] = useState("sheep");
+```
+Lo cambié para que, en vez de que al inicio se muestren todos los tipos de animales, solo se muestre la oveja. Lo que sucede en la interfaz es que, al entrar, en vez de mostrar todos los animales o tarjetas, solo me filtra o me muestra la oveja. Solo se renderizan las cards que cumplan con el tipo, que es la oveja.
+
+Al finalizar la petición de la API con éxito, se llama a data, que tiene los objetos, y se filtra. Se da un true para los animales que cumplen con el typeFilter "sheep".
+
+<img width="1820" height="916" alt="image" src="https://github.com/user-attachments/assets/82e10578-8006-4bf6-b6a3-922f10d622e2" />
+
+<hr>
+
+## Actividad 2: Agregar un filtro nuevo
+
+El estado se agregó con los demás estados de filtros de la siguiente manera:
+
+```bash
+const [weightFilter, setWeightFilter] = useState("");
+```
+
+Lo que hace es almacenar el texto del input que el usuario escribe en el filtro con el peso mínimo. Se inicializa como una cadena vacía, lo que hace que, por defecto, no se aplique ningún filtro.
+
+Lógica : 
+-weightFilter es una cadena de texto. Para tener un valor numérico, lo que se hace es convertir weightFilter a Number en la constante minWeight. Si el campo está vacío o no es válido, el valor se establece como un cero (0).
+
+```bash
+const minWeight = Number(weightFilter) || 0;
+```
+
+- La condición de filtrado es: si minWeight es 0, sería true, haciendo que byWeight sea true para todos los animales y se salte el filtro porque todos los animales cumplen con la condición. Ahora, si minWeight es $> 0$, se pasa a la segunda parte, haciendo que sea true solo para los animales cuyo peso sea mayor o igual al peso mínimo ingresado por el usuario. 
+
+```bash
+  const byWeight = minWeight === 0 || a.weight >= minWeight;
+```
+
+Lista:
+La lista se ve afectada cada vez que el usuario escribe un número en el input de "Min. Weight". La función setWeightFilter se llama, lo que provoca que se actualice el estado y se renderice. React, al detectar el cambio y volver a ejecutar la función de filtrado, hace que el componente AnimalList reciba la nueva lista filteredAnimals y se la pase al componente hijo AnimalCard, y este las renderice.
+  
+  <img width="1831" height="921" alt="image" src="https://github.com/user-attachments/assets/66f4019e-42b1-43a3-9acc-f02f312a39dc" />
+  
+<hr>
+
+## Actividad 3: Mejorar el formulario
+
+-required: Se cambió el span del label: en vez de solo tener un asterisco para decirle al usuario que ese campo es obligatorio, se le agregó la palabra "required" a cada campo obligatorio. Esto mejora la experiencia del usuario en el sentido de que los usuarios que no entiendan el contexto o no estén familiarizados con el asterisco se les dice que este campo es obligatorio, lo que hace que el usuario entienda desde el principio que el campo es obligatorio y lo debe llenar.
+
+-autofocus: Se le puso un autofocus al campo de name para que, al entrar, sea lo primero que se selecciona. Esto ayuda mucho a usuarios con lectores de pantalla o de teclado para que no tengan que presionar el tab para comenzar a agregar un nuevo animal y facilitarles la vida, y también que los usuarios de teclado ubiquen dónde está ubicado el cursor al entrar.
+
+<img width="1828" height="913" alt="image" src="https://github.com/user-attachments/assets/4c391c3b-5e48-46c5-9604-584d3c9bd0f0" />
+
+
+  
+
+
 
 
 
