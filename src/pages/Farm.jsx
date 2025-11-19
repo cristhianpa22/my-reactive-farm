@@ -19,6 +19,7 @@ export default function Farm() {
   const [typeFilter, setTypeFilter] = useState("sheep");
   const [statusFilter, setStatusFilter] = useState("all");
   const [query, setQuery] = useState("");
+  const [weightFilter, setWeightFilter] = useState("");
 
   // Error de envío desde el formulario (red / servidor)
   const [submitError, setSubmitError] = useState(null);
@@ -61,18 +62,20 @@ export default function Farm() {
   // Derivar lista filtrada + búsqueda
   const filteredAnimals = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const minWeight = Number(weightFilter) || 0;
     return animals.filter((a) => {
       const byType = typeFilter === "all" || a.type === typeFilter;
       const byStatus = statusFilter === "all" || a.status === statusFilter;
+      const byWeight = minWeight === 0 || a.weight >= minWeight;
       const byQuery =
         q.length === 0 ||
         a.name?.toLowerCase().includes(q) ||
         a.type?.toLowerCase().includes(q) ||
         String(a.weight).includes(q) ||
         String(a.age).includes(q);
-      return byType && byStatus && byQuery;
+      return byType && byStatus && byQuery && byWeight;
     });
-  }, [animals, typeFilter, statusFilter, query]);
+  }, [animals, typeFilter, statusFilter, query, weightFilter]);
 
   return (
     <Layout title="My Reactive Farm 🐄🌾">
@@ -146,6 +149,20 @@ export default function Farm() {
                     </option>
                   ))}
                 </select>
+
+                <label className="sr-only" htmlFor="weight-filter">
+                  Minimum Weight
+                </label>
+                <input
+                  id="weight-filter"
+                  type="number"
+                  placeholder="Min. Weight (kg)"
+                  min="0"
+                  value={weightFilter}
+                  onChange={(e) => setWeightFilter(e.target.value)}
+                  className="w-40 rounded-md border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-green-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-gray-100"
+                />
+
               </div>
             </AnimalList>
           </section>
